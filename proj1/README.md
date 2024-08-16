@@ -24,11 +24,14 @@ And the input for X is X1 X2 X3, and same as Y. Since they are representing diff
 then we can compare and check each digit to see if they are the same. For example, we will compare X1 and Y1, and then X2 and Y2 and so on, if they are the same, that will return true and output 1, else will be false and output 0.
 Then we can generate a truth table in this situation:
 
-| X | Y | output|
-| 0 | 0 |   1   |
-| 0 | 1 |   0   |
-| 1 | 0 |   0   |
-| 1 | 1 |   1   |    Since the logic for this truth table is corresponding to the XNOR table, we will use the XNOR gate to compare all three pair of inputs. And then at the end we will use the And gate to input all three outputs from the XNOR gate to check if they are all true which also mean that they are all output 1 to determine the whether N or E will return 1. Also, I notice that the AND gate will only output one result which is true or false, so I connect the wire to both N and E, and then put an NOT gate in between the AND and N. So, once the circuit is returning true, N will be 0 and E will be 1.
+                    | X | Y | output |
+                    |---|---|--------|
+                    | 0 | 0 |   1    |
+                    | 0 | 1 |   0    |
+                    | 1 | 0 |   0    |
+                    | 1 | 1 |   1    |
+
+Since the logic for this truth table is corresponding to the XNOR table, we will use the XNOR gate to compare all three pair of inputs. And then at the end we will use the And gate to input all three outputs from the XNOR gate to check if they are all true which also mean that they are all output 1 to determine the whether N or E will return 1. Also, I notice that the AND gate will only output one result which is true or false, so I connect the wire to both N and E, and then put an NOT gate in between the AND and N. So, once the circuit is returning true, N will be 0 and E will be 1.
 
 ## Part 2 explaination:
 
