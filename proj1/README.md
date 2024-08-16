@@ -44,30 +44,52 @@ No generative AI used for this part
 
 I watch that video online which it gave me the idea about how to get start it, I understand that what it want us to do which we enter an 4 bit digit binary number, and then we will get the corresponding number with our last digit of our student ID, since my last digit of my SID is 7, then I will have this table as following:
 
-|B3 B2 B1 B0|G3 G2 G1 G0|      In this situation, the video prompt me using the K-Map to solve for all four digit
-| 0000 | 0010 | m0        this problem, so we have four set of number and we denote them as G3, G2, G1, and G0
-| 0001 | 0110 | m1        , each letter represent each column of the bit, and we denote each row to m1 ~ m15,
-| 0010 | 0111 | m2        now we only want the row that has 1 for each column, so we will get:
-| 0011 | 0101 | m3          G1 = m5, m6, m7, m8, m9, m10, m11, m12
-| 0100 | 0100 | m4          G2 = m1, m2, m3, m4, m5, m6, m7, m8
-| 0101 | 1100 | m5          G3 = m0, m1, m2, m7, m8, m9, m10
-| 0110 | 1101 | m6          G4 = m2, m3, m6, m7, m10, m11, m14, m15
-| 0111 | 1111 | m7          B3-B0 represent the number to input, and the output is G1-G4
-| 1000 | 1110 | m8          Then we draw the K-Map for each of them to find out the boolean expression:
-| 1001 | 1010 | m9          For example for the "G0" Set, the K-Map will look something like this
-| 1010 | 1011 | m10                 
-| 1011 | 1001 | m11 
-| 1100 | 1000 | m12                             |   B3
-| 1101 | 0000 | m13                     --------|--------      So we will get B1(B3')+B3(B1) for G0
-| 1110 | 0001 | m14                     | 0 | 0 | 0 | 0 |
-| 1111 | 0011 | m15                     ---------------------
-                                        | 0 | 0 | 0 | 0 |
-                                    --------------------- B0
-                                        | 1 | 1 | 1 | 1 |
-                                    B1  ---------------------
-                                        | 1 | 1 | 1 | 1 |
-                                    ---------------------
-                                            |  B2   |
+In this situation, the video prompt me using the K-Map to solve for all four digit this problem, so we have four set of number and we denote them as G3, G2, G1, and G0, each letter represent each column of the bit, and we denote each row to m1 ~ m15,
+now we only want the row that has 1 for each column, so we will get:
+G1 = m5, m6, m7, m8, m9, m10, m11, m12
+G2 = m1, m2, m3, m4, m5, m6, m7, m8
+G3 = m0, m1, m2, m7, m8, m9, m10
+G4 = m2, m3, m6, m7, m10, m11, m14, m15
+B3-B0 represent the number to input, and the output is G1-G4
+Then we draw the K-Map for each of them to find out the boolean expression:
+For example for the "G0" Set, the K-Map will look something like this
+
+
+                    | B3  | B2  | B1  | B0  | G3  | G2  | G1  | G0  |
+                    |-----|-----|-----|-----|-----|-----|-----|-----|
+                    | 0000 | 0010 | m0  |
+                    | 0001 | 0110 | m1  |
+                    | 0010 | 0111 | m2  |
+                    | 0011 | 0101 | m3  |
+                    | 0100 | 0100 | m4  |
+                    | 0101 | 1100 | m5  |
+                    | 0110 | 1101 | m6  |
+                    | 0111 | 1111 | m7  |
+                    | 1000 | 1110 | m8  |
+                    | 1001 | 1011 | m9  |
+                    | 1010 | 1010 | m10 |
+                    | 1011 | 1001 | m11 |
+                    | 1100 | 1000 | m12 |
+                    | 1101 | 0001 | m13 |
+                    | 1110 | 0011 | m14 |
+                    | 1111 | 0011 | m15 |
+
+
+
+                    |         |   B3   |
+                    |---------|--------|
+                    |         | 0 0 0 0 |
+                    |         | 0 0 0 0 |
+                    |---------|--------|
+                    |         |   B0   |
+                    |    B1   | 1 1 1 1 |
+                    |    1    | 1 1 1 1 |
+                    |---------|--------|
+                    |         |   B2   |
+
+
+So we will get B1(B3')+B3(B1) for G0
+             
 
 For this boolean expression, we will apply a NOT gate B3 which represent B3' AND gate for B1 and B3', and AND gate for B3 and B1, And then we use OR gate to connect them together, and this will represent the logic to get the last digit of the output. Hence repeating the same step to all other G3-G1, then we will get our output result.
 
@@ -87,17 +109,19 @@ I search the question up online and found this web page (https://www.geeksforgee
 
 So, we will have the truth table somthing look like this:
 
-     V W X Y Z | A B C D E F G 
-  0  0 0 0 0 0 | 1 1 1 1 1 1 0 m0
-  1  0 0 0 0 1 | 0 1 1 0 0 0 0 m1
-  2  0 0 0 1 1 | 1 1 0 1 1 0 1 m3
-  3  0 0 1 1 1 | 1 1 1 1 0 0 1 m7
-  4  0 1 1 1 1 | 0 1 1 0 0 1 1 m15
-  5  1 0 0 0 0 | 1 0 1 1 0 1 1 m16
-  6  1 0 0 0 1 | 1 0 1 1 1 1 1 m17
-  7  1 0 0 1 1 | 1 1 1 0 0 0 0 m19
-  8  1 0 1 1 1 | 1 1 1 1 1 1 1 m23
-  9  1 1 1 1 1 | 1 1 1 1 0 1 1 m31
+                                    | V | W | X | Y | Z | | A | B | C | D | E | F | G |   |
+                                    |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+                                    | 0 | 0 | 0 | 0 | 0 | | 1 | 1 | 1 | 1 | 1 | 0 | 0 | m0 |
+                                    | 0 | 0 | 0 | 1 | 1 | | 0 | 1 | 1 | 0 | 0 | 1 | 0 | m1 |
+                                    | 0 | 0 | 1 | 1 | 1 | | 1 | 1 | 0 | 1 | 1 | 0 | 1 | m3 |
+                                    | 0 | 1 | 1 | 1 | 1 | | 0 | 1 | 1 | 0 | 1 | 1 | 0 | m7 |
+                                    | 1 | 0 | 1 | 1 | 1 | | 0 | 1 | 0 | 0 | 1 | 0 | 1 | m15 |
+                                    | 1 | 0 | 0 | 0 | 0 | | 1 | 0 | 1 | 0 | 1 | 1 | 1 | m16 |
+                                    | 1 | 0 | 0 | 0 | 1 | | 1 | 0 | 1 | 1 | 1 | 0 | 1 | m17 |
+                                    | 1 | 0 | 1 | 1 | 1 | | 1 | 1 | 0 | 0 | 0 | 0 | 0 | m19 |
+                                    | 1 | 1 | 1 | 1 | 1 | | 1 | 1 | 1 | 0 | 0 | 0 | 1 | m23 |
+                                    | 1 | 1 | 1 | 1 | 1 | | 1 | 1 | 1 | 0 | 1 | 1 | 1 | m31 |
+
 
 And in this web page (https://www.geeksforgeeks.org/bcd-to-7-segment-decoder/), it shows how to solve this problem in 4 variables of K-Map, but our current problem has 5 variables, So I search how to solve 5 variables K-Map through this link (https://www.geeksforgeeks.org/5-variable-k-map-in-digital-logic/), it basically shows me in this situation, I notice that the first variable which is the Letter "V" has 0 and 1, then we can draw 2 K-maps to represent the 5 variables, since 2 to the 5 power, two 4X4 K-map will also represent 32 variables, and I suppose this will also work in drawing the K-Map in professor's way so we will have:
 
